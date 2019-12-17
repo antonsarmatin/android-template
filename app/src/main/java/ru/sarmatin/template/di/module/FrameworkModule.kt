@@ -1,5 +1,6 @@
 package ru.sarmatin.template.di.module
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -8,6 +9,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.sarmatin.template.core.constant.BASE_URL
 import ru.sarmatin.template.framework.network.api.Api
+import ru.sarmatin.template.framework.network.interceptor.AuthTokenRequestInterceptor
+import ru.sarmatin.template.framework.preferences.SharedPreferences
+import ru.sarmatin.template.framework.preferences.SharedPreferencesImpl
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -37,6 +41,8 @@ class FrameworkModule {
 
     }
 
+
+
     @Singleton
     @Provides
     fun provideMainGetApi(@Named("main") retrofit: Retrofit): Api {
@@ -46,5 +52,12 @@ class FrameworkModule {
     //TODO Other apis if needed
 
 
+    @Singleton
+    @Provides
+    fun sharedPreferences(context: Context): SharedPreferences = SharedPreferencesImpl(context)
+
+    @Singleton
+    @Provides
+    fun authInterceptor(sp: SharedPreferences): AuthTokenRequestInterceptor = AuthTokenRequestInterceptor(sp)
 
 }
