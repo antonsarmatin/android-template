@@ -1,2 +1,2 @@
-include ':app'
-rootProject.name='qweep-client'
+include ':app', ':core'
+rootProject.name='android-template'

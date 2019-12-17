@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import ru.sarmatin.template.di.CoreScope
 import ru.sarmatin.template.di.ViewModelFactory
 import ru.sarmatin.template.di.ViewModelKey
 import ru.sarmatin.template.presentation.ui.main.splash.SplashViewModel
@@ -13,6 +14,7 @@ import ru.sarmatin.template.presentation.ui.main.splash.SplashViewModel
 abstract class ViewModelModule {
 
     @Binds
+    @CoreScope
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 
