@@ -1,10 +1,9 @@
-package ru.sarmatin.template.framework.network
+package ru.sarmatin.template.data.framework.network
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import ru.sarmatin.template.presentation.extension.networkInfo
 import javax.inject.Inject
 import javax.inject.Singleton
 

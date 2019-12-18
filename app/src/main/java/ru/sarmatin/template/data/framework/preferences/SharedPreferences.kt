@@ -1,4 +1,4 @@
-package ru.sarmatin.template.framework.preferences
+package ru.sarmatin.template.data.framework.preferences
 
 interface SharedPreferences {
 

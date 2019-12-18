@@ -1,8 +1,8 @@
-package ru.sarmatin.template.framework.network.interceptor
+package ru.sarmatin.template.data.framework.network.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
-import ru.sarmatin.template.framework.network.NetworkHandler
+import ru.sarmatin.template.data.framework.network.NetworkHandler
 import javax.inject.Inject
 
 /**

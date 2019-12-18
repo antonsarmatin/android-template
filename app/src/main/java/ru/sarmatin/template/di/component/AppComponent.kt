@@ -4,7 +4,7 @@ import dagger.Component
 import ru.sarmatin.template.di.module.*
 
 @Component(
-    modules = [AppModule::class, ViewModelModule::class, InteractorsModule::class, DataModule::class, FrameworkModule::class]
+    modules = [AppModule::class, ViewModelModule::class, InteractorsModule::class, RepositoryModule::class, FrameworkModule::class]
 )
 interface AppComponent {
 

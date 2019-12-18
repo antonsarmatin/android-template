@@ -8,12 +8,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.sarmatin.template.core.constant.BASE_URL
-import ru.sarmatin.template.framework.network.NetworkHandler
-import ru.sarmatin.template.framework.network.api.Api
-import ru.sarmatin.template.framework.network.interceptor.AuthTokenRequestInterceptor
-import ru.sarmatin.template.framework.network.interceptor.CacheInterceptor
-import ru.sarmatin.template.framework.preferences.SharedPreferences
-import ru.sarmatin.template.framework.preferences.SharedPreferencesImpl
+import ru.sarmatin.template.data.framework.network.NetworkHandler
+import ru.sarmatin.template.data.framework.network.api.ExampleApi
+import ru.sarmatin.template.data.framework.network.interceptor.AuthTokenRequestInterceptor
+import ru.sarmatin.template.data.framework.network.interceptor.CacheInterceptor
+import ru.sarmatin.template.data.framework.preferences.SharedPreferences
+import ru.sarmatin.template.data.framework.preferences.SharedPreferencesImpl
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -22,7 +22,7 @@ import javax.inject.Singleton
 class FrameworkModule {
 
 
-    @Named("main")
+//    @Named("main")
     @Singleton
     @Provides
     fun provideRetrofitInterfaceMain(): Retrofit {
@@ -45,13 +45,11 @@ class FrameworkModule {
 
 
 
-    @Singleton
-    @Provides
-    fun provideMainGetApi(@Named("main") retrofit: Retrofit): Api {
-        return retrofit.create(Api::class.java)
-    }
-
-    //TODO Other apis if needed
+//    @Singleton
+//    @Provides
+//    fun provideMainGetApi(@Named("main") retrofit: Retrofit): ExampleApi {
+//        return retrofit.create(ExampleApi::class.java)
+//    }
 
 
     @Singleton

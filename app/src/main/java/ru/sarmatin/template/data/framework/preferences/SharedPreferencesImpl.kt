@@ -1,4 +1,4 @@
-package ru.sarmatin.template.framework.preferences
+package ru.sarmatin.template.data.framework.preferences
 
 import android.content.Context
 import android.preference.PreferenceManager

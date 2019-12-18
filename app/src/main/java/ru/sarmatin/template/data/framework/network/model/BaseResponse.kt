@@ -1,10 +1,13 @@
-package ru.sarmatin.template.framework.network.api
+package ru.sarmatin.template.data.framework.network.model
+
+
 
 /**
  * Created by antonsarmatin
  * Date: 2019-12-17
  * Project: android-template
  */
-interface Api {
+
+open class BaseResponse{
 
 }
