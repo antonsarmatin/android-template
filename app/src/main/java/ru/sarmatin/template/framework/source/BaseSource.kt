@@ -12,11 +12,12 @@ import ru.sarmatin.template.core.functional.Either
 abstract class BaseSource {
 
 
-    protected suspend fun <T, R> request(call: suspend () -> Response<T>, transform: (T) -> R, default: T): Either<Failure, R> {
+    protected suspend fun <T, R> request(call: suspend () -> Response<T>, transform: (T) -> R): Either<Failure, R> {
         return try {
             val response = call.invoke()
-            when (response.isSuccessful) {
-                true -> Either.Right(transform((response.body() ?: default)))
+            val body = response.body()
+            when (response.isSuccessful && body != null) {
+                true -> Either.Right(transform(body))
                 false -> Either.Left(Failure.ServerError)
             }
         } catch (exception: Throwable) {
