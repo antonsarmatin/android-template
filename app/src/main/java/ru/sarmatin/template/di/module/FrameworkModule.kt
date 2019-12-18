@@ -8,8 +8,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.sarmatin.template.core.constant.BASE_URL
+import ru.sarmatin.template.framework.network.NetworkHandler
 import ru.sarmatin.template.framework.network.api.Api
 import ru.sarmatin.template.framework.network.interceptor.AuthTokenRequestInterceptor
+import ru.sarmatin.template.framework.network.interceptor.CacheInterceptor
 import ru.sarmatin.template.framework.preferences.SharedPreferences
 import ru.sarmatin.template.framework.preferences.SharedPreferencesImpl
 import java.util.concurrent.TimeUnit
@@ -59,5 +61,15 @@ class FrameworkModule {
     @Singleton
     @Provides
     fun authInterceptor(sp: SharedPreferences): AuthTokenRequestInterceptor = AuthTokenRequestInterceptor(sp)
+
+    @Singleton
+    @Provides
+    fun cacheInterceptor(networkHandler: NetworkHandler): CacheInterceptor = CacheInterceptor(networkHandler)
+
+    //
+
+    @Singleton
+    @Provides
+    fun networkHandler(context: Context): NetworkHandler = NetworkHandler(context)
 
 }
