@@ -14,6 +14,7 @@ import ru.sarmatin.template.data.framework.network.interceptor.AuthTokenRequestI
 import ru.sarmatin.template.data.framework.network.interceptor.CacheInterceptor
 import ru.sarmatin.template.data.framework.preferences.SharedPreferences
 import ru.sarmatin.template.data.framework.preferences.SharedPreferencesImpl
+import ru.sarmatin.template.data.framework.source.example.ExampleSource
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -22,7 +23,7 @@ import javax.inject.Singleton
 class FrameworkModule {
 
 
-//    @Named("main")
+    //    @Named("main")
     @Singleton
     @Provides
     fun provideRetrofitInterfaceMain(): Retrofit {
@@ -42,7 +43,6 @@ class FrameworkModule {
                 .build()
 
     }
-
 
 
 //    @Singleton
@@ -69,5 +69,11 @@ class FrameworkModule {
     @Singleton
     @Provides
     fun networkHandler(context: Context): NetworkHandler = NetworkHandler(context)
+
+    //
+
+    @Singleton
+    @Provides
+    fun exampleApi(retrofit: Retrofit): ExampleApi = ExampleSource(retrofit)
 
 }
