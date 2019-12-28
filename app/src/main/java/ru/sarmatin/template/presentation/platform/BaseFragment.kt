@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import ru.sarmatin.template.App
 import ru.sarmatin.template.core.exception.Failure
 import ru.sarmatin.template.di.component.AppComponent
+import ru.sarmatin.template.presentation.ui.main.GlobalState
 import javax.inject.Inject
 
 /**
@@ -28,6 +30,8 @@ abstract class BaseFragment : Fragment() {
         (activity?.application as App).appComponent
     }
 
+    private lateinit var globalState: GlobalState
+
     private val failureObserver by lazy {
         Observer<Failure> {
         when(it){
@@ -40,6 +44,11 @@ abstract class BaseFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        globalState = ViewModelProviders.of(activity!!).get(GlobalState::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(layoutId(), container, false)
