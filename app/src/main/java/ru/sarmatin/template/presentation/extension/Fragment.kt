@@ -17,4 +17,8 @@ inline fun <reified T : ViewModel> Fragment.viewModel(factory: ViewModelProvider
     return vm
 }
 
+inline fun <reified T : ViewModel> Fragment.viewModel(factory: ViewModelProvider.Factory): T {
+    return ViewModelProvider(this, factory)[T::class.java]
+}
+
 fun BaseFragment.close() = fragmentManager?.popBackStack()
