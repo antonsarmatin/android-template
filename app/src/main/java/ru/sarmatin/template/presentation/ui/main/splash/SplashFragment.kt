@@ -1,6 +1,7 @@
 package ru.sarmatin.template.presentation.ui.main.splash
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import ru.sarmatin.template.R
 import ru.sarmatin.template.core.exception.Failure
@@ -17,13 +18,12 @@ class SplashFragment : BaseFragment() {
         fun newInstance() = SplashFragment()
     }
 
-    private lateinit var viewModel: SplashViewModel
+    private val viewModel: SplashViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.createMainComponent().injectSplashFragment(this)
-        viewModel = viewModel(viewModelFactory)
     }
 
 }

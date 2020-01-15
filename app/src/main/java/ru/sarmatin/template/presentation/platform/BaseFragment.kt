@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
 import ru.sarmatin.template.App
 import ru.sarmatin.template.core.exception.Failure
+import ru.sarmatin.template.di.ViewModelFactory
 import ru.sarmatin.template.di.component.AppComponent
 import ru.sarmatin.template.presentation.ui.main.GlobalState
 import javax.inject.Inject
@@ -20,7 +18,7 @@ import javax.inject.Inject
  *
  * @see Fragment
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), HasDefaultViewModelProviderFactory {
 
     abstract fun layoutId(): Int
 
@@ -43,7 +41,9 @@ abstract class BaseFragment : Fragment() {
     }
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var viewModelFactory: ViewModelFactory
+
+    override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory = viewModelFactory.create(this, arguments)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
