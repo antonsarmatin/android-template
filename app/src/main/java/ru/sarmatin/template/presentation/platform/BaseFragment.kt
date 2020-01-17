@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.*
 import ru.sarmatin.template.App
 import ru.sarmatin.template.core.exception.Failure
@@ -28,7 +29,7 @@ abstract class BaseFragment : Fragment(), HasDefaultViewModelProviderFactory {
         (activity?.application as App).appComponent
     }
 
-    private lateinit var globalState: GlobalState
+    internal val globalState: GlobalState by activityViewModels()
 
     private val failureObserver by lazy {
         Observer<Failure> {
@@ -47,7 +48,6 @@ abstract class BaseFragment : Fragment(), HasDefaultViewModelProviderFactory {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        globalState = ViewModelProviders.of(activity!!).get(GlobalState::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =

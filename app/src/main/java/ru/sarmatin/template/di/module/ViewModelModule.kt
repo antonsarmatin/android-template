@@ -10,6 +10,7 @@ import dagger.multibindings.Multibinds
 import ru.sarmatin.template.di.ViewModelAssistedFactory
 import ru.sarmatin.template.di.ViewModelFactory
 import ru.sarmatin.template.di.ViewModelKey
+import ru.sarmatin.template.presentation.ui.main.GlobalState
 import ru.sarmatin.template.presentation.ui.main.example.ExampleStateViewModel
 import ru.sarmatin.template.presentation.ui.main.splash.SplashViewModel
 
@@ -34,7 +35,13 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(GlobalState::class)
+    abstract fun bindGlobalStateFactory(f: GlobalState.Factory): ViewModelAssistedFactory<out ViewModel>
+
+    @Binds
+    @IntoMap
     @ViewModelKey(ExampleStateViewModel::class)
     abstract fun bindExampleSVMFactory(f: ExampleStateViewModel.Factory): ViewModelAssistedFactory<out ViewModel>
+
 
 }
