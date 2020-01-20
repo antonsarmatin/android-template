@@ -6,9 +6,9 @@ import ru.sarmatin.template.core.functional.Either
 
 abstract class BaseRepository {
 
-    protected suspend fun <T, R> request(call: Response<T>, transform: (T) -> R): Either<Failure, R> {
+    protected suspend fun <T, R> request(call: suspend () -> Response<T>, transform: (T) -> R): Either<Failure, R> {
         return try {
-            val response = call
+            val response = call.invoke()
             val body = response.body()
             when (response.isSuccessful && body != null) {
                 true -> Either.Right(transform(body))
